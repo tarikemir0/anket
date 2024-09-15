@@ -25,7 +25,7 @@
             <button type="submit" class="btn">Giriş Yap</button>
 
             <div class="register-link">
-                <p>Hesabın Yok Mu?<a href="kayit.html"> Kayıt Ol</a></p>
+                <p>Hesabın Yok Mu?<a href="kayit.php"> Kayıt Ol</a></p>
             </div>
         </form>
     </div>

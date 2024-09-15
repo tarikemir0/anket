@@ -33,7 +33,7 @@
             <button type="submit" class="btn">Kayıt Ol</button>
 
             <div class="register-link">
-                <p>Zaten bir hesabın var mı?<a href="giris.html"> Giriş Yap</a></p>
+                <p>Zaten bir hesabın var mı?<a href="giris.php"> Giriş Yap</a></p>
             </div>
         </form>
     </div>
