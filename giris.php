@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="" method="POST">
+        <form action="giris_islem.php" method="POST">
             <h1>Giriş Yap</h1>
             <div class="input-box">
                 <input type="text" placeholder="Kullanıcı Adı" required name="username"><i class='bx bxs-user'></i>
@@ -25,7 +25,7 @@
             <button type="submit" class="btn">Giriş Yap</button>
 
             <div class="register-link">
-                <p>Hesabın Yok Mu?<a href="kayit.php"> Kayıt Ol</a></p>
+                <p>Hesabın Yok Mu?<a href="index.php"> Kayıt Ol</a></p>
             </div>
         </form>
     </div>

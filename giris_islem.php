@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['password'])) {
             // Şifre doğru, oturum başlat
             $_SESSION['username'] = $user['username']; // Oturuma kullanıcı adını kaydet
-            header("Location: profil.php"); // Profil sayfasına yönlendir
+            header("Location: icerik.php"); // Profil sayfasına yönlendir
             exit();
         } else {
             // Şifre yanlış

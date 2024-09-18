@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgb(0, 0, 0,0.6),rgb(0, 0, 0, 0.6)), url(bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center ;
+}
+
+header{
+    text-align: center;
+    padding-top: 20px;
+}
+
+header h1{
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-size: 80px;
+    font-style: normal;
+    color: #f9ef23;
+    letter-spacing: 3px;
+}
+
+.icerik{
+    height: calc(100vh - 250px);
+    width: 70%;
+    border-left: 3px solid rgb(145, 145, 145);
+    margin:40px auto;
+    backdrop-filter: blur(5px);
+    overflow-y: scroll;
+}
+
+.icerik::-webkit-scrollbar {
+    display: none;
+  }
+
+.icerik .about h3{
+    font-family: "Anton", sans-serif;
+    font-weight: 50;
+    font-size: 20px;
+    font-style: normal;
+    color: #f9ef23;
+    letter-spacing: 3px;
+    margin-left: 20px;
+
+}
+
+.icerik .about p{
+    color: rgb(192, 192, 192);
+    word-wrap: break-word;
+    margin-left: 20px;
+    font-family: "Hanken Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    line-height: 30px;
+}
+
+.anket h2{
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    font-style: normal;
+    color: #f9ef23;
+    letter-spacing: 3px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.anket-icerik .music{
+    display: flex;
+    gap: 2rem;
+}
+
+.music-anket{
+    width: 50%;
+    margin:40px auto;
+    border-right: 3px solid rgb(145, 145, 145);
+    border-top: 3px solid rgb(145, 145, 145);
+    border-radius: 10px;
+}
+
+.music-anket h4{
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    font-style: normal;
+    color: #f9ef23;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#results {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.music-anket #results p {
+    color: rgb(192, 192, 192);
+    word-wrap: break-word;
+    margin-left: 20px;
+    font-family: "Hanken Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    line-height: 30px;
+    margin-top: 10px;
+    font-size: 20px;
+}
