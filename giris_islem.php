@@ -1,7 +1,6 @@
 <?php
 session_start(); // Oturum başlat
 
-// Veritabanı bağlantısı
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -30,17 +29,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Şifreyi kontrol et
         if (password_verify($password, $user['password'])) {
-            // Şifre doğru, oturum başlat
-            $_SESSION['username'] = $user['username']; // Oturuma kullanıcı adını kaydet
-            header("Location: icerik.php"); // Profil sayfasına yönlendir
+            // Şifre doğruysa, oturum başlat ve kullanıcı ID'sini sakla
+            $_SESSION['user_id'] = $user['user_id']; // 'id' yerine 'user_id' kullanıldı
+            $_SESSION['username'] = $user['username'];
+
+            // İçerik sayfasına yönlendir
+            header("Location: icerik.php");
             exit();
         } else {
             // Şifre yanlış
             echo "<script>alert('Hatalı şifre!');</script>";
+            header("Location: giris.php");
+            exit();
         }
     } else {
         // Kullanıcı adı bulunamadı
         echo "<script>alert('Kullanıcı bulunamadı!');</script>";
+        header("Location: giris.php");
+        exit();
     }
 }
 
