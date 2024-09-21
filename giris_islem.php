@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $conn->real_escape_string($_POST['password']);
 
     // Veritabanında kullanıcıyı bul
-    $sql = "SELECT * FROM kayıt WHERE username = '$username'";
+    $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
