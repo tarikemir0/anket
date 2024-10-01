@@ -2,30 +2,36 @@
 session_start();
 include 'db.php'; // Veritabanı bağlantısı
 
-// Kullanıcı giriş yapmamışsa geri gönder
+// Kullanıcı giriş yapmış mı kontrol et
 if (!isset($_SESSION['user_id'])) {
     header('Location: giris.php');
     exit;
 }
 
 $user_id = $_SESSION['user_id'];
-$poll_id = $_POST['poll_id'];
-$vote_value = $_POST['vote'];
+$music_id = $_POST['music_id'];
+$new_vote = $_POST['vote'];
 
-// Kullanıcının daha önce oy verip vermediğini kontrol et
-$stmt = $conn->prepare("SELECT vote_id FROM votes WHERE user_id = ? AND poll_id = ?");
-$stmt->bind_param('ii', $user_id, $poll_id);
-$stmt->execute();
-$stmt->store_result();
+// music_id'nin varlığını kontrol et
+$checkStmt = $conn->prepare("SELECT COUNT(*) FROM music_control WHERE music_id = ?");
+$checkStmt->bind_param('i', $music_id);
+$checkStmt->execute();
+$checkStmt->bind_result($count);
+$checkStmt->fetch();
+$checkStmt->close(); // Kullanım tamamlandıktan sonra kapat
 
-if ($stmt->num_rows == 0) {
-    // Kullanıcı daha önce oy vermemişse, oyunu kaydet
-    $insertStmt = $conn->prepare("INSERT INTO votes (user_id, poll_id, vote_value) VALUES (?, ?, ?)");
-    $insertStmt->bind_param('iis', $user_id, $poll_id, $vote_value);
-    $insertStmt->execute();
+if ($count > 0) {
+    // Kullanıcının mevcut oyunu güncelle veya yeni oyunu ekle
+    $stmt = $conn->prepare("INSERT INTO votes (user_id, music_id, vote_value) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE vote_value = ?");
+    $stmt->bind_param('iisi', $user_id, $music_id, $new_vote, $new_vote);
+    $stmt->execute();
+    $stmt->close(); // Kullanım tamamlandıktan sonra kapat
+} else {
+    // music_id bulunamazsa hata mesajı verebilirsiniz
+    echo "Geçersiz müzik ID.";
 }
 
-// İçerik sayfasına geri dön
+// Başarılı güncelleme sonrası anket sayfasına yönlendir
 header('Location: icerik.php');
 exit;
 ?>

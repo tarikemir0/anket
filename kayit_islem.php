@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $conn->real_escape_string($_POST['password']);
 
     // Telefon numarasının veritabanında olup olmadığını kontrol et
-    $sql_check_phone = "SELECT * FROM kayıt WHERE number = '$phone_number'";
+    $sql_check_phone = "SELECT * FROM users WHERE number = '$phone_number'";
     $result = $conn->query($sql_check_phone);
 
     if ($result->num_rows > 0) {
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Veritabanına kayıt ekle
-        $sql = "INSERT INTO kayıt (name, surname, number, username, password) 
+        $sql = "INSERT INTO users (name, surname, number, username, password) 
                 VALUES ('$first_name', '$last_name', '$phone_number', '$username', '$hashed_password')";
 
         if ($conn->query($sql) === TRUE) {
