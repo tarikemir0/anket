@@ -23,11 +23,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Telefon numarasının veritabanında olup olmadığını kontrol et
     $sql_check_phone = "SELECT * FROM users WHERE number = '$phone_number'";
-    $result = $conn->query($sql_check_phone);
+    $result_phone = $conn->query($sql_check_phone);
 
-    if ($result->num_rows > 0) {
-        // Eğer telefon numarası varsa, kullanıcıyı giriş sayfasına yönlendir
-        echo "<script>alert('Bu telefon numarası zaten kayıtlı. Lütfen giriş yapın.'); window.location.href='giris.php';</script>";
+    // Kullanıcı adının veritabanında olup olmadığını kontrol et
+    $sql_check_username = "SELECT * FROM users WHERE username = '$username'";
+    $result_username = $conn->query($sql_check_username);
+
+    if ($result_phone->num_rows > 0) {
+        // Eğer telefon numarası varsa, kullanıcıya uyarı göster
+        echo "<script>
+                alert('Bu telefon numarası zaten kayıtlı. Lütfen giriş yapın.');
+                window.location.href = 'giris.php';
+              </script>";
+        exit();
+    } elseif ($result_username->num_rows > 0) {
+        // Eğer kullanıcı adı varsa, kullanıcıya uyarı göster
+        echo "<script>
+                alert('Bu kullanıcı adı zaten kullanılıyor. Lütfen farklı bir kullanıcı adı seçin.');
+                window.history.back();
+              </script>";
+        exit();
     } else {
         // Şifreyi hash'le
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -37,10 +52,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$first_name', '$last_name', '$phone_number', '$username', '$hashed_password')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Kayıt başarılı!";
-            header("Location:giris.php");
+            echo "<script>
+                    alert('Kayıt başarılı! Giriş sayfasına yönlendiriliyorsunuz.');
+                    window.location.href = 'giris.php';
+                  </script>";
         } else {
-            echo "Hata: " . $sql . "<br>" . $conn->error;
+            echo "<script>
+                    alert('Hata: " . $conn->error . "');
+                    window.history.back();
+                  </script>";
         }
     }
 }
