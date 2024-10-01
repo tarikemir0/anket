@@ -98,6 +98,35 @@ while ($row = $voteResults->fetch_assoc()) {
                             </div>
                         <?php endif; ?>
                     </div>
+                </div><br>
+                <div class="music">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4d1h82c6Ha9sKIhDFkrd7g?utm_source=generator&theme=0" width="50%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <div class="music-anket">
+                        <h4>Listeye Eklenmeli mi?</h4>
+                        <?php if (!$hasVoted): ?>
+                            <form id="pollForm" action="vote.php"  style=" color: rgb(192, 192, 192);
+    word-wrap: break-word;
+    font-size: 20px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-optical-sizing: auto;
+    line-height: 30px;
+    margin-top: 80px;" method="POST">
+                                <label>
+                                    <input type="radio" name="vote" value="blue"> Beğendim... Eklenmeli
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="vote" value="red"> Daha Zamanı Var
+                                </label><br>
+                                <input type="hidden" name="poll_id" value="<?php echo $poll_id; ?>">
+                                <button type="submit" id="gizliButon">Oy Ver</button>
+                            </form>
+                        <?php else: ?>
+                            <div id="results">
+                                <p>Beğendim... Eklenmeli: <?php echo $blueVotes; ?> oy</p>
+                                <p>Daha Zamanı Var: <?php echo $redVotes; ?> oy</p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
